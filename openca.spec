@@ -1,10 +1,9 @@
 # TODO:
-# - SECURITY: http://securitytracker.com/alerts/2004/Sep/1011167.html
 # - remove all that crazy finding...
 Summary:	OpenCA - Open Certificate Authority
 Summary(pl):	OpenCA - otwarty projekt CA
 Name:		openca
-%define post 7
+%define post 10
 %define rel 0.9.1
 Version:	%{rel}.%{post}
 Release:	0.1
@@ -12,7 +11,7 @@ Epoch:		2
 License:	BSD
 Group:		Applications/Publishing/SGML
 Source0:	http://dl.sourceforge.net/openca/%{name}-%{rel}-%{post}.tar.gz
-# Source0-md5:	48796e666f24eb063feaa7c237f81adc
+# Source0-md5:	fefe0ba8b709f111cb64cb07a2d4ac6a
 URL:		http://www.openca.org/openca/
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
