@@ -1,3 +1,6 @@
+# TODO:
+# - SECURITY: http://securitytracker.com/alerts/2004/Sep/1011167.html
+# - remove all that crazy finding...
 Summary:	OpenCA - Open Certificate Authority
 Summary(pl):	OpenCA - otwarty projekt CA
 Name:		openca
