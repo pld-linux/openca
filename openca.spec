@@ -6,7 +6,7 @@ Name:		openca
 Version:	%{rel}.%{post}
 Release:	0.1
 Epoch:		2
-License:	Free (Copyright (C) 1999 The OpenJade group)
+License:	BSD
 Group:		Applications/Publishing/SGML
 Source0:	http://dl.sourceforge.net/openca/%{name}-%{rel}-%{post}.tar.gz
 # Source0-md5:	48796e666f24eb063feaa7c237f81adc
