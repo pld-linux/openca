@@ -1,4 +1,5 @@
 Summary:	OpenCA - Open Certificate Authority
+Summary(pl):	OpenCA - otwarty projekt CA
 Name:		openca
 %define post 7
 %define rel 0.9.1
@@ -12,17 +13,31 @@ Source0:	http://dl.sourceforge.net/openca/%{name}-%{rel}-%{post}.tar.gz
 URL:		http://www.openca.org/openca/
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
-%description
-Open Certificate Authority
-
 %define ossl_cnf	/etc/openssl/openssl.cnf
 %define ossl_country	%(grep '^countryName_default.*=.' %{ossl_cnf}| sed -e 's|^countryName_default.*=.||g' )
 %define ossl_state	%(grep '^stateOrProvinceName_default.*=.' %{ossl_cnf}| sed -e 's|^stateOrProvinceName_default.*=.||g' )
 
-%{!?securehost:			%define securehost	secure.%(hostname -d) }
-%{!?caorg:			%define caorg		%(hostname -d|sed -e 's/\(.*\)\..*$/\1/g') }
-%{!?cacountry:			%define cacountry	%{ossl_country} }
-%{!?castate:			%define castate		%{ossl_state} }
+%{!?securehost:	%define securehost	secure.%(hostname -d) }
+%{!?caorg:	%define caorg		%(hostname -d|sed -e 's/\(.*\)\..*$/\1/g') }
+%{!?cacountry:	%define cacountry	%{ossl_country} }
+%{!?castate:	%define castate		%{ossl_state} }
+
+%description
+The OpenCA PKI Development Project is a collaborative effort to
+develop a robust, full-featured and Open Source out-of-the-box
+Certification Authority implementing the most used protocols with
+full-strength cryptography world-wide. OpenCA is based on many
+Open-Source Projects. Among the supported software is OpenLDAP,
+OpenSSL, Apache Project, Apache mod_ssl.
+
+%description -l pl
+Projekt OpenCA PKI Development to wspólne próby stworzenia potê¿nego,
+w pe³ni funkcjonalnego, dzia³aj±cego od razu po instalacji CA
+(Certificate Authority) o otwartych ¼ród³ach z implementacj±
+wiêkszo¶ci u¿ywanych protoko³ów oraz pe³n± siln± kryptografi± dostêpn±
+dla ca³ego ¶wiata. OpenCA jest oparte na wielu projektach Open Source.
+Wsród wspieranego oprogramowania s± OpenLDAP, OpenSSL, projekt Apache,
+mod_ssl dla Apache.
 
 %prep
 %setup -q 
@@ -34,7 +49,8 @@ rm -rf src/modules/perl-ldap*
 rm -rf src/modules/URI-*
 
 %build
-%configure --with-prefix=%{_prefix} \
+%configure \
+	--with-prefix=%{_prefix} \
 	--with-hierarchy-level=ca \
 	--with-etc-prefix=%{_sysconfdir} \
 	--with-lib-prefix=%{_libdir} \
@@ -64,7 +80,9 @@ rm -rf $RPM_BUILD_ROOT
 
 %define camakeins prefix="$RPM_BUILD_ROOT%{_prefix}" ca_htdocs_fs_prefix="$RPM_BUILD_ROOT/home/services/httpd/htdocs/ca" ca_cgi_fs_prefix="$RPM_BUILD_ROOT/home/services/httpd/cgi-bin/ca" ra_htdocs_fs_prefix="$RPM_BUILD_ROOT/home/services/httpd/htdocs/ra" ra_cgi_fs_prefix="$RPM_BUILD_ROOT/home/services/httpd/cgi-bin/ra" pub_htdocs_fs_prefix="$RPM_BUILD_ROOT/home/services/httpd/htdocs/pub" pub_cgi_fs_prefix="$RPM_BUILD_ROOT/home/services/httpd/cgi-bin/pub" scep_cgi_fs_prefix="$RPM_BUILD_ROOT/home/services/httpd/cgi-bin/scep" etc_prefix="$RPM_BUILD_ROOT%{_sysconfdir}" lib_prefix="$RPM_BUILD_ROOT%{_libdir}" var_prefix="$RPM_BUILD_ROOT%{_vardir}"
 
-make %{camakeins} install-ca
+%{__make} install-ca \
+	%{camakeins}
+
 rm -f %{_tmppath}/openca-ca.l*
 find "$RPM_BUILD_ROOT" ! -type d >%{_tmppath}/openca-ca.list
 find "$RPM_BUILD_ROOT" -type l >%{_tmppath}/openca-ca.lnks
