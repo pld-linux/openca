@@ -13,6 +13,7 @@ Group:		Applications/Publishing/SGML
 Source0:	http://dl.sourceforge.net/openca/%{name}-%{rel}-%{post}.tar.gz
 # Source0-md5:	fefe0ba8b709f111cb64cb07a2d4ac6a
 URL:		http://www.openca.org/openca/
+BuildRequires:	openldap-devel
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %define ossl_cnf	/etc/openssl/openssl.cnf
@@ -42,7 +43,7 @@ wspieranego oprogramowania s± OpenLDAP, OpenSSL, projekt Apache,
 mod_ssl dla Apache.
 
 %prep
-%setup -q 
+%setup -q -n %{name}-%{rel}-%{post}
 rm -rf src/modules/Convert-ASN1*
 rm -rf src/modules/Digest-MD5*
 rm -rf src/modules/IO-Socket-SSL*
