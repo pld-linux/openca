@@ -33,10 +33,10 @@ OpenSSL, Apache Project, Apache mod_ssl.
 %description -l pl
 Projekt OpenCA PKI Development to wspólne próby stworzenia potê¿nego,
 w pe³ni funkcjonalnego, dzia³aj±cego od razu po instalacji CA
-(Certificate Authority) o otwartych ¼ród³ach z implementacj±
-wiêkszo¶ci u¿ywanych protoko³ów oraz pe³n± siln± kryptografi± dostêpn±
-dla ca³ego ¶wiata. OpenCA jest oparte na wielu projektach Open Source.
-Wsród wspieranego oprogramowania s± OpenLDAP, OpenSSL, projekt Apache,
+(Certificate Authority) o otwartych ¼ród³ach z implementacj± wiêkszo¶ci 
+u¿ywanych protoko³ów oraz pe³n± siln± kryptografi± dostêpn± dla ca³ego 
+¶wiata. OpenCA jest oparte na wielu projektach Open Source. W¶ród 
+wspieranego oprogramowania s± OpenLDAP, OpenSSL, projekt Apache, 
 mod_ssl dla Apache.
 
 %prep
