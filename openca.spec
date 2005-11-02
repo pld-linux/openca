@@ -1,5 +1,7 @@
 # TODO:
 # - remove all that crazy finding...
+# - make it build
+# - upgrade to 0.9.2.4
 Summary:	OpenCA - Open Certificate Authority
 Summary(pl):	OpenCA - otwarty projekt CA
 Name:		openca
