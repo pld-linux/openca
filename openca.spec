@@ -14,6 +14,7 @@ License:	BSD
 Group:		Applications/Publishing/SGML
 Source0:	http://dl.sourceforge.net/openca/%{name}-%{rel}-%{post}.tar.gz
 # Source0-md5:	fefe0ba8b709f111cb64cb07a2d4ac6a
+BuildRequires:	openssl-devel
 URL:		http://www.openca.org/openca/
 BuildRequires:	openldap-devel
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
