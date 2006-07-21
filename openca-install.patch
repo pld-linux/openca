@@ -1,0 +1,292 @@
+--- Makefile.global-vars.in	2005-06-21 15:04:23.000000000 +0200
++++ Makefile.global-vars.in-new	2006-07-21 17:46:46.025405136 +0200
+@@ -127,10 +127,10 @@
+ 		$(MAKE) __install_dir DIR=`dirname $(DIR)`; \
+ 		if test -n "$(MODE)"; then \
+ 			set -x; \
+-			$(INSTALL) -d -o $(USER) -g $(GROUP) -m $(MODE) $(DIR); \
++			$(INSTALL) -d -m $(MODE) $(DIR); \
+ 		else \
+ 			set -x; \
+-			$(INSTALL) -d -o $(USER) -g $(GROUP) $(DIR); \
++			$(INSTALL) -d $(DIR); \
+ 		fi; \
+ 	    fi; \
+ 	fi;
+--- src/common/etc/Makefile	2005-08-05 12:50:35.000000000 +0200
++++ src/common/etc/Makefile-new	2006-07-21 18:19:40.919175648 +0200
+@@ -82,10 +82,10 @@
+ 		cd $@ && $(MAKE) $(SUBTARGET)
+ 
+ $(FILES)::
+-		$(INSTALL) -o ${openca_user} -g ${openca_group} -m 644 $@ $(etc_prefix)/$@
++		$(INSTALL) -m 644 $@ $(etc_prefix)/$@
+ 
+ $(PROGS)::
+-		$(INSTALL) -o ${openca_user} -g ${openca_group} -m 755 $@ $(etc_prefix)/$@
++		$(INSTALL) -m 755 $@ $(etc_prefix)/$@
+ 
+ distclean::
+ 		$(RM) $(AC_FILES)
+--- src/common/etc/bp/Makefile	2004-09-17 16:37:30.000000000 +0200
++++ src/common/etc/bp/Makefile-new	2006-07-21 18:22:01.684776024 +0200
+@@ -33,7 +33,7 @@
+ 		cd $@ && $(MAKE) $(SUBTARGET)
+ 
+ $(STATIC_CONFFILES) $(AC_CONFFILES)::
+-	$(INSTALL) -o ${openca_user} -g ${openca_group} -m 644 $@ $(DEST_ETCBPDIR)/$@
++	$(INSTALL) -m 644 $@ $(DEST_ETCBPDIR)/$@
+ 
+ distclean::
+ 		$(RM) $(AC_CONFFILES)
+--- src/common/etc/bp/functions/Makefile	2004-10-05 15:24:54.000000000 +0200
++++ src/common/etc/bp/functions/Makefile-new	2006-07-21 18:24:31.011074976 +0200
+@@ -34,7 +34,7 @@
+ install::	$(FILES)
+ 
+ $(FILES):: $(DEST_DIR)
+-		$(INSTALL) -o ${openca_user} -g ${openca_group} -m 644 $@ $(DEST_DIR)/$@
++		$(INSTALL) -m 644 $@ $(DEST_DIR)/$@
+ 
+ $(DEST_DIR)::
+ 		$(MAKE) __install_dir USER=${openca_user} GROUP=${openca_group} MODE=755 DIR=$@
+--- src/common/etc/database/Makefile	2004-09-17 16:37:31.000000000 +0200
++++ src/common/etc/database/Makefile-new	2006-07-21 18:28:51.341498736 +0200
+@@ -25,10 +25,10 @@
+ install::	$(FILES) $(TEMPLATE_FILES)
+ 
+ $(FILES)::
+-		$(INSTALL) -o ${openca_user} -g ${openca_group} -m 644 $@ $(DEST_CGI_CONFDIR)/$@
++		$(INSTALL) -m 644 $@ $(DEST_CGI_CONFDIR)/$@
+ 
+ $(TEMPLATE_FILES)::
+-		$(INSTALL) -o ${openca_user} -g ${openca_group} -m 644 $@ $(DEST_CGI_CONFDIR)/$@.template
++		$(INSTALL) -m 644 $@ $(DEST_CGI_CONFDIR)/$@.template
+ 
+ distclean::
+ 		$(RM) $(AC_FILES)
+--- src/common/etc/rbac/Makefile	2004-09-17 16:37:31.000000000 +0200
++++ src/common/etc/rbac/Makefile-new	2006-07-21 18:29:45.512263528 +0200
+@@ -31,7 +31,7 @@
+ 		cd $@ && $(MAKE) $(SUBTARGET)
+ 
+ $(FILES)::
+-	$(INSTALL) -g ${httpd_group} -o ${httpd_user} -m 644 $@ $(DEST_CONFRBACDIR)/$@
++	$(INSTALL) -m 644 $@ $(DEST_CONFRBACDIR)/$@
+ 
+ $(TEMPLATES)::
+-	$(INSTALL) -g ${httpd_group} -o ${httpd_user} -m 644 $@ $(DEST_CONFRBACDIR)/$@.template
++	$(INSTALL) -m 644 $@ $(DEST_CONFRBACDIR)/$@.template
+--- src/common/etc/rbac/cmds/Makefile	2004-09-27 13:33:58.000000000 +0200
++++ src/common/etc/rbac/cmds/Makefile-new	2006-07-21 18:30:39.125113136 +0200
+@@ -171,6 +171,6 @@
+ install::		$(FILES)
+ 
+ $(FILES)::
+-	$(INSTALL) -g ${httpd_group} -o ${httpd_user} -m 644 $@ $(DEST_CONFRBACCMDSDIR)/$@
++	$(INSTALL) -m 644 $@ $(DEST_CONFRBACCMDSDIR)/$@
+ 
+ distclean::
+--- src/common/etc/openssl/Makefile	2004-09-17 16:37:31.000000000 +0200
++++ src/common/etc/openssl/Makefile-new	2006-07-21 18:34:28.822193872 +0200
+@@ -34,10 +34,10 @@
+ 		cd $@ && $(MAKE) $(SUBTARGET)
+ 
+ $(AC_CONFOPENSSLFILES)::
+-	$(INSTALL) -o ${openca_user} -g ${openca_group} -m 644 $@ $(DEST_ETCOPENSSLDIR)/$@.template
++	$(INSTALL) -m 644 $@ $(DEST_ETCOPENSSLDIR)/$@.template
+ 
+ $(STATIC_CONFOPENSSLFILES)::
+-	$(INSTALL) -o ${openca_user} -g ${openca_group} -m 644 $@.in $(DEST_ETCOPENSSLDIR)/$@.template
++	$(INSTALL) -m 644 $@.in $(DEST_ETCOPENSSLDIR)/$@.template
+ 
+ distclean::
+ 		$(RM) $(AC_CONFOPENSSLFILES)
+--- src/common/etc/openssl/extfiles/Makefile	2004-09-17 16:37:31.000000000 +0200
++++ src/common/etc/openssl/extfiles/Makefile-new	2006-07-21 18:35:20.759298232 +0200
+@@ -27,7 +27,7 @@
+ install::	$(AC_FILES)
+ 
+ $(AC_FILES)::
+-	$(INSTALL) -g ${httpd_group} -o ${httpd_user} -m 644 $@.in $(DEST_CONFOPENSSLEXTFILESDIR)/$@.template
++	$(INSTALL) -m 644 $@.in $(DEST_CONFOPENSSLEXTFILESDIR)/$@.template
+ 
+ distclean::
+ 		$(RM) $(AC_FILES)
+--- src/common/etc/openssl/openssl/Makefile	2004-09-23 17:11:06.000000000 +0200
++++ src/common/etc/openssl/openssl/Makefile-new	2006-07-21 18:36:16.862769208 +0200
+@@ -27,7 +27,7 @@
+ install::	$(AC_FILES)
+ 
+ $(AC_FILES)::
+-	$(INSTALL) -g ${httpd_group} -o ${httpd_user} -m 644 $@ $(DEST_CONFOPENSSLOPENSSLDIR)/$@.template
++	$(INSTALL) -m 644 $@ $(DEST_CONFOPENSSLOPENSSLDIR)/$@.template
+ 
+ distclean::
+ 		$(RM) $(AC_FILES)
+--- src/common/lib/bp/Makefile	2004-10-06 16:01:55.000000000 +0200
++++ src/common/lib/bp/Makefile-new	2006-07-21 18:39:44.083266904 +0200
+@@ -60,7 +60,7 @@
+ 
+ $(SUBS)::		$(DEST_CGI_BPDIR)
+ $(SUBS)::
+-		$(INSTALL) -o ${openca_user} -g ${openca_group} -m 644 $@ $(DEST_CGI_BPDIR)/$@
++		$(INSTALL) -m 644 $@ $(DEST_CGI_BPDIR)/$@
+ 
+ distclean::
+ 		@if ! [ -z $(AC_SUBS) ] ; then \
+--- src/common/lib/cmds/Makefile	2004-10-05 15:24:55.000000000 +0200
++++ src/common/lib/cmds/Makefile-new	2006-07-21 18:40:37.224188256 +0200
+@@ -191,7 +191,7 @@
+ 
+ $(CMDS)::		$(DEST_CGI_CMDDIR)
+ $(CMDS)::
+-		$(INSTALL) -o ${openca_user} -g ${openca_group} -m 644 $@ $(DEST_CGI_CMDDIR)/$@
++		$(INSTALL) -m 644 $@ $(DEST_CGI_CMDDIR)/$@
+ 
+ distclean::
+ 		@if ! [ -z $(AC_CMDS) ] ; then \
+--- src/common/lib/functions/Makefile	2004-10-05 15:24:56.000000000 +0200
++++ src/common/lib/functions/Makefile-new	2006-07-21 18:41:22.333330624 +0200
+@@ -56,7 +56,7 @@
+ 
+ $(LIBS)::	$(DEST_CGI_LIBDIR)
+ $(LIBS)::
+-		$(INSTALL) -o ${openca_user} -g ${openca_group} -m 644 $@ $(DEST_CGI_LIBDIR)/$@
++		$(INSTALL) -m 644 $@ $(DEST_CGI_LIBDIR)/$@
+ 
+ distclean::
+ 		#$(RM)
+--- src/common/lib/locale/Makefile	2004-10-05 15:24:56.000000000 +0200
++++ src/common/lib/locale/Makefile-new	2006-07-21 18:42:35.115266088 +0200
+@@ -21,7 +21,7 @@
+ $(TRANSLATIONS)::
+ 		$(MAKE) __install_dir USER=${openca_user} GROUP=${openca_group} DIR=$(DEST_DIR)/$@
+ 		$(MAKE) __install_dir USER=${openca_user} GROUP=${openca_group} DIR=$(DEST_DIR)/$@/LC_MESSAGES
+-		$(INSTALL) -o ${openca_user} -g ${openca_group} -m 644 $@/$(MO_FILE) $(DEST_DIR)/$@/LC_MESSAGES/$(MO_FILE)
++		$(INSTALL) -m 644 $@/$(MO_FILE) $(DEST_DIR)/$@/LC_MESSAGES/$(MO_FILE)
+ 
+ .SUFFIXES: .mo .po
+ 
+--- src/common/lib/stylesheets/Makefile	2006-07-21 18:44:00.752247288 +0200
++++ src/common/lib/stylesheets/Makefile-new	2006-07-21 18:44:11.832562824 +0200
+@@ -27,7 +27,7 @@
+ 
+ $(LIBS)::	$(DEST_CGI_LIBDIR)
+ $(LIBS)::
+-		$(INSTALL) -o ${openca_user} -g ${openca_group} -m 644 $@ $(DEST_CGI_LIBDIR)/$@
++		$(INSTALL) -m 644 $@ $(DEST_CGI_LIBDIR)/$@
+ 
+ distclean::
+ 		#$(RM)
+--- src/common/lib/mails/Makefile	2004-10-05 15:24:57.000000000 +0200
++++ src/common/lib/mails/Makefile-new	2006-07-21 18:48:03.004419360 +0200
+@@ -30,7 +30,7 @@
+ 
+ $(MAILS)::	$(DEST_MAIL_DIR)
+ $(MAILS)::
+-		$(INSTALL) -o ${openca_user} -g ${openca_group} -m 644 $(MAILSRC)/$(LANG)/$@ $(DEST_MAIL_DIR)/$(LANG)/$@.template
++		$(INSTALL) -m 644 $(MAILSRC)/$(LANG)/$@ $(DEST_MAIL_DIR)/$(LANG)/$@.template
+ 
+ $(LOCALES)::	$(DEST_MAIL_DIR)
+ 		$(MAKE) __install_dir USER=${openca_user} GROUP=${openca_group} MODE=711 DIR=$(DEST_MAIL_DIR)/$@
+--- src/common/var/Makefile	2004-10-05 15:24:57.000000000 +0200
++++ src/common/var/Makefile-new	2006-07-21 18:51:54.549219200 +0200
+@@ -50,7 +50,7 @@
+ 	else \
+ 		set -x; \
+ 		touch empty.txt; \
+-		$(INSTALL) -o ${httpd_user} -g ${httpd_group} -m 644 empty.txt $(var_prefix)/$@; \
++		$(INSTALL) -m 644 empty.txt $(var_prefix)/$@; \
+ 	fi
+ 
+ $(SUBDIRS)::
+--- src/common/var/crypto/Makefile	2004-10-06 16:01:55.000000000 +0200
++++ src/common/var/crypto/Makefile-new	2006-07-21 18:52:59.242384344 +0200
+@@ -62,11 +62,11 @@
+ 		echo "$@ already exists, skipping"; \
+ 	else \
+ 		set -x; \
+-		$(INSTALL) -g ${httpd_group} -o ${httpd_user} -m 640 $@ $(DEST_VAROPENSSLDIR)/$@; \
++		$(INSTALL) -m 640 $@ $(DEST_VAROPENSSLDIR)/$@; \
+ 	fi
+ 
+ $(MAKECHAIN)::	$(SUBDIRS)
+-	$(INSTALL) -o ${openca_user} -g ${openca_group} -m 644 Makefile.crt ${var_prefix}/crypto/chain/Makefile
++	$(INSTALL) -m 644 Makefile.crt ${var_prefix}/crypto/chain/Makefile
+ 
+ $(EXTRA_KEYS)::	$(SUBDIRS)
+ 	@if [ -h $(DEST_VAR_CRYPTO_KEYDIR)/$@ ] || [ -e $(DEST_VAR_CRYPTO_KEYDIR)/$@ ]; then \
+--- src/ocspd/Makefile.am	2004-08-25 14:26:46.000000000 +0200
++++ src/ocspd/Makefile.am-new	2006-07-21 19:02:17.143570472 +0200
+@@ -7,15 +7,15 @@
+ 
+ #-------- installation paths: --------
+ 
+-srcdir			= @srcdir@
+-top_srcdir		= @top_srcdir@
++srcdir			= $(DESTDIR)@srcdir@
++top_srcdir		= $(DESTDIR)@top_srcdir@
+ 
+-DEST_BINDIR		= @bindir@
+-DEST_DATADIR		= @datadir@
+-DEST_INFODIR		= @infodir@
+-DEST_LIBDIR		= @libdir@
+-DEST_MANDIR		= @mandir@
+-DEST_SBINDIR		= @sbindir@
++DEST_BINDIR		= $(DESTDIR)@bindir@
++DEST_DATADIR		= $(DESTDIR)@datadir@
++DEST_INFODIR		= $(DESTDIR)@infodir@
++DEST_LIBDIR		= $(DESTDIR)@libdir@
++DEST_MANDIR		= $(DESTDIR)@mandir@
++DEST_SBINDIR		= $(DESTDIR)@sbindir@
+ 
+ #-------- --------
+ 
+--- src/ocspd/src/Makefile.in	2006-01-03 13:41:21.000000000 +0100
++++ src/ocspd/src/Makefile.in-new	2006-07-21 19:07:13.081581056 +0200
+@@ -15,26 +15,25 @@
+ 
+ SHELL = @SHELL@
+ 
+-srcdir = @srcdir@
+-top_srcdir = @top_srcdir@
+-VPATH = @srcdir@
+-prefix = @prefix@
+-exec_prefix = @exec_prefix@
+-
+-bindir = @bindir@
+-sbindir = @sbindir@
+-libexecdir = @libexecdir@
+-datadir = @datadir@
+-sysconfdir = @sysconfdir@
+-sharedstatedir = @sharedstatedir@
+-localstatedir = @localstatedir@
+-libdir = @libdir@
+-infodir = @infodir@
+-mandir = @mandir@
+-includedir = @includedir@
+-oldincludedir = /usr/include
++srcdir = $(DESTDIR)@srcdir@
++top_srcdir = $(DESTDIR)@top_srcdir@
++VPATH = $(DESTDIR)@srcdir@
++prefix = $(DESTDIR)@prefix@
++exec_prefix = $(DESTDIR)@exec_prefix@
++
++bindir = $(DESTDIR)@bindir@
++sbindir = $(DESTDIR)@sbindir@
++libexecdir = $(DESTDIR)@libexecdir@
++datadir = $(DESTDIR)@datadir@
++sysconfdir = $(DESTDIR)@sysconfdir@
++sharedstatedir = $(DESTDIR)@sharedstatedir@
++localstatedir = $(DESTDIR)@localstatedir@
++libdir = $(DESTDIR)@libdir@
++infodir = $(DESTDIR)@infodir@
++mandir = $(DESTDIR)@mandir@
++includedir = $(DESTDIR)@includedir@
++oldincludedir = $(DESTDIR)/usr/include
+ 
+-DESTDIR =
+ 
+ pkgdatadir = $(datadir)/@PACKAGE@
+ pkglibdir = $(libdir)/@PACKAGE@
