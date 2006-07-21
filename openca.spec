@@ -1,20 +1,20 @@
 # TODO:
 # - remove all that crazy finding...
 # - make it build
-# - upgrade to 0.9.2.4
 Summary:	OpenCA - Open Certificate Authority
 Summary(pl):	OpenCA - otwarty projekt CA
+%define		realname	OpenCA
 Name:		openca
-%define post 10
-%define rel 0.9.1
-Version:	%{rel}.%{post}
+Version:	0.9.2.5
 Release:	0.1
 Epoch:		2
 License:	BSD
 Group:		Applications/Publishing/SGML
-Source0:	http://dl.sourceforge.net/openca/%{name}-%{rel}-%{post}.tar.gz
-# Source0-md5:	fefe0ba8b709f111cb64cb07a2d4ac6a
+Source0:	http://dl.sourceforge.net/openca/%{name}-%{version}.tar.gz
+# Source0-md5:	8181ba08016f8c12a91707e61601cd8d
+BuildRequires:	libiconv-devel
 BuildRequires:	openssl-devel
+BuildRequires:	perl-XML-Parser >= 2.23
 URL:		http://www.openca.org/openca/
 BuildRequires:	openldap-devel
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
@@ -46,7 +46,7 @@ wspieranego oprogramowania s± OpenLDAP, OpenSSL, projekt Apache,
 mod_ssl dla Apache.
 
 %prep
-%setup -q -n %{name}-%{rel}-%{post}
+%setup -q -n %{realname}-%{version}
 rm -rf src/modules/Convert-ASN1*
 rm -rf src/modules/Digest-MD5*
 rm -rf src/modules/IO-Socket-SSL*
