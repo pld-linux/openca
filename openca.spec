@@ -12,6 +12,7 @@ License:	BSD
 Group:		Applications/Publishing/SGML
 Source0:	http://dl.sourceforge.net/openca/%{name}-%{version}.tar.gz
 # Source0-md5:	8181ba08016f8c12a91707e61601cd8d
+Patch0:		%{name}-install.patch
 BuildRequires:	libiconv-devel
 BuildRequires:	openssl-devel
 BuildRequires:	perl-XML-Parser >= 2.23
@@ -47,6 +48,7 @@ mod_ssl dla Apache.
 
 %prep
 %setup -q -n %{realname}-%{version}
+%patch0 -p0
 rm -rf src/modules/Convert-ASN1*
 rm -rf src/modules/Digest-MD5*
 rm -rf src/modules/IO-Socket-SSL*
