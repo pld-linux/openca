@@ -2,7 +2,7 @@
 # - remove all that crazy finding...
 # - make it build
 Summary:	OpenCA - Open Certificate Authority
-Summary(pl):	OpenCA - otwarty projekt CA
+Summary(pl.UTF-8):   OpenCA - otwarty projekt CA
 %define		realname	OpenCA
 Name:		openca
 Version:	0.9.2.5
@@ -37,13 +37,13 @@ full-strength cryptography world-wide. OpenCA is based on many
 Open-Source Projects. Among the supported software is OpenLDAP,
 OpenSSL, Apache Project, Apache mod_ssl.
 
-%description -l pl
-Projekt OpenCA PKI Development to wspólne próby stworzenia potê¿nego,
-w pe³ni funkcjonalnego, dzia³aj±cego od razu po instalacji CA
-(Certificate Authority) o otwartych ¼ród³ach z implementacj± wiêkszo¶ci 
-u¿ywanych protoko³ów oraz pe³n± siln± kryptografi± dostêpn± dla ca³ego 
-¶wiata. OpenCA jest oparte na wielu projektach Open Source. W¶ród 
-wspieranego oprogramowania s± OpenLDAP, OpenSSL, projekt Apache, 
+%description -l pl.UTF-8
+Projekt OpenCA PKI Development to wspÃ³lne prÃ³by stworzenia potÄ™Å¼nego,
+w peÅ‚ni funkcjonalnego, dziaÅ‚ajÄ…cego od razu po instalacji CA
+(Certificate Authority) o otwartych ÅºrÃ³dÅ‚ach z implementacjÄ… wiÄ™kszoÅ›ci 
+uÅ¼ywanych protokoÅ‚Ã³w oraz peÅ‚nÄ… silnÄ… kryptografiÄ… dostÄ™pnÄ… dla caÅ‚ego 
+Å›wiata. OpenCA jest oparte na wielu projektach Open Source. WÅ›rÃ³d 
+wspieranego oprogramowania sÄ… OpenLDAP, OpenSSL, projekt Apache, 
 mod_ssl dla Apache.
 
 %prep
