@@ -2,7 +2,7 @@
 # - remove all that crazy finding...
 # - make it build
 Summary:	OpenCA - Open Certificate Authority
-Summary(pl.UTF-8):   OpenCA - otwarty projekt CA
+Summary(pl.UTF-8):	OpenCA - otwarty projekt CA
 %define		realname	OpenCA
 Name:		openca
 Version:	0.9.2.5
