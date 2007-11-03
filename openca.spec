@@ -17,7 +17,7 @@ BuildRequires:	libiconv-devel
 BuildRequires:	openssl-devel
 BuildRequires:	perl-XML-Parser >= 2.23
 URL:		http://www.openca.org/openca/
-BuildRequires:	openldap-devel
+BuildRequires:	openldap-devel >= 2.4.6
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %define ossl_cnf	/etc/openssl/openssl.cnf
