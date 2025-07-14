@@ -48,7 +48,7 @@ mod_ssl dla Apache.
 
 %prep
 %setup -q -n %{realname}-%{version}
-%patch0 -p0
+%patch -P0 -p0
 rm -rf src/modules/Convert-ASN1*
 rm -rf src/modules/Digest-MD5*
 rm -rf src/modules/IO-Socket-SSL*
